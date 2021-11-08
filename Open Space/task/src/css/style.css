@@ -1,0 +1,75 @@
+* {
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+}
+
+body {
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    font-size: 5vw;
+    width: auto;
+}
+
+.space {
+    height: 50vw;
+    width: 50vw;
+    overflow: hidden;
+    background-image: url('../image/space.png');
+    background-color: darkgrey;
+}
+
+/*<!--    <img id="space_image" alt="nightly space with stars" src="image/space.png" height="438" width="626"/>-->*/
+
+#space_image {
+    width: 70vw;
+    height: inherit;
+}
+
+.planet-area {
+    position: relative;
+    right: 2vw;
+    top: 25vw;
+    width: 50vw;
+}
+
+.planet {
+    width: 30vw;
+    height: 30vw;
+}
+
+.rocket {
+    bottom: 13vw;
+    position: relative;
+    right: 13vw;
+    transform: rotate(30deg);
+
+    height: 9vw;
+    width: 9vw;
+}
+
+footer {
+    align-items: center;
+    display: flex;
+    font-size: 1.5vw;
+    flex-flow: wrap;
+    justify-content: space-around;
+    position: relative;
+    top: 8vw;
+}
+
+footer p {
+    padding: 1.5vw;
+}
