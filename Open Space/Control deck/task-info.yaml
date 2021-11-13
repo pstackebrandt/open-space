@@ -107,9 +107,6 @@ files:
         padding: 1.5vw;
     }
   learner_created: false
-- name: src/script/script.js
-  visible: true
-  learner_created: false
 - name: hstest/test.js
   visible: false
   text: |
@@ -296,6 +293,21 @@ files:
         }
     );
   learner_created: false
+- name: src/image/mars.png
+  visible: true
+  learner_created: true
+- name: src/image/rocket.png
+  visible: true
+  learner_created: true
+- name: src/image/space.png
+  visible: true
+  learner_created: true
+- name: src/script/script.js
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/143/stages/772/implement#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Sat, 13 Nov 2021 11:41:04 UTC
 record: -1

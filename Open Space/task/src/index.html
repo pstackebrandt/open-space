@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>Open Space</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style.css"/>
+    <script defer src="script/script.js"></script>
+</head>
+<body>
+<!--<header>-->
+<!--    <h1>Open space</h1>-->
+<!--</header>-->
+<div class="space">
+    <div class="planet-area">
+        <img class="planet" alt="mars with volcanoes" src="image/mars.png" height="900" width="900"/>
+        <img class="rocket" alt="small rocket" src="image/rocket.png" height="512" width="512"/>
+    </div>
+
+    <div class="control-panel">
+        <input id="password" type="password" placeholder="Password">
+        <input id="passwordEntered" type="button" value="OK" onClick="checkControlPanelPosition()">
+
+        <div class="check-buttons">
+            <input type="checkbox">
+            <input type="checkbox">
+            <input type="checkbox">
+            <input type="checkbox">
+            <input type="checkbox">
+            <input type="checkbox">
+        </div>
+
+        <div class="levers">
+            <input type="range" class="vertical">
+            <input type="range" class="vertical">
+            <input type="range" class="vertical">
+            <input type="range" class="vertical">
+            <input type="range" class="vertical">
+        </div>
+        <input type="button" id="launch" value="launch">
+    </div>
+
+</div>
+<!--<footer>-->
+<!--    <p class="author">Peter Stackebrandt</p>-->
+<!--</footer>-->
+</body>
+</html>

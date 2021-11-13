@@ -1,6 +1,6 @@
 * {
     font-family: 'Roboto', sans-serif;
-    color: #fff;
+    color: #000;
 }
 
 body {
@@ -25,16 +25,14 @@ h1 {
 
 .space {
     height: 50vw;
-    width: 50vw;
+    width: 70vw;
     overflow: hidden;
     background-image: url('../image/space.png');
     background-color: darkgrey;
 }
 
-/*<!--    <img id="space_image" alt="nightly space with stars" src="image/space.png" height="438" width="626"/>-->*/
-
 #space_image {
-    width: 70vw;
+    width: inherit;
     height: inherit;
 }
 
@@ -59,6 +57,60 @@ h1 {
     height: 9vw;
     width: 9vw;
 }
+
+.control-panel{
+    position: absolute;
+    left: 50vw;
+    min-height: 15vw;
+    top: 20vw;
+    z-index: 100;
+    width: 30vw;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    background-color: #be4f13;
+    opacity: 90%;
+}
+
+.check-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.check-buttons input[type="checkbox"]{
+    margin: 1vw 1vw;
+    width: 1.2vw;
+    height: 1.2vw;
+}
+
+.levers{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 1vw 0;
+}
+
+.levers input[type="range"]{
+    margin: 0 -1vw;
+    transform: rotate(-90deg);
+    height: 7vw;
+    width: 7vw;
+}
+
+#launch, #passwordEntered, #password{
+    margin: 1vw;
+}
+
+#password{
+    width: 10vw;
+}
+
 
 footer {
     align-items: center;
