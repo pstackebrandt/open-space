@@ -66,6 +66,15 @@ h1 {
     z-index: 100;
     width: 30vw;
 
+    background-color: darkgrey;
+    background-image: repeating-linear-gradient(45deg, yellow, yellow 35px, black 35px, black 75px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.control-panel__inner{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -73,7 +82,10 @@ h1 {
 
     background-color: #be4f13;
     opacity: 90%;
+    margin: 1vw;
+    width: 28vw;
 }
+
 
 .check-buttons{
     display: flex;
