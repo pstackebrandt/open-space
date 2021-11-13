@@ -47,13 +47,13 @@ async function stageTest() {
                 planetArea[0].children[1].tagName.toLowerCase() === 'img' && (
                     planetArea[0].children[0].className === 'planet' && planetArea[0].children[1].className === 'rocket' ||
                     planetArea[0].children[1].className === 'planet' && planetArea[0].children[0].className === 'rocket'))
-            )return hs.wrong("There are some mismatches with suggested structure or elements naming in planet-area section")
+            ) return hs.wrong("There are some mismatches with suggested structure or elements naming in planet-area section")
 
             let controlPanel = document.getElementsByClassName('control-panel');
             if (controlPanel.length === 0) {
                 return hs.wrong("Can't find element with class=\"control-panel\"");
             }
-            let controlPanelInner = controlPanel[0]
+            let controlPanelInner = Array.from(controlPanel[0].children)[0]
             if (!(controlPanelInner.children.length === 5 &&
                 controlPanelInner.getElementsByTagName('input').length === 14 &&
                 controlPanelInner.getElementsByTagName('div').length === 2
@@ -106,34 +106,18 @@ async function stageTest() {
             return hs.correct();
         },
         //#test5
-        //panel top should be not lower then 1/3 of the space height
+        //testing gradient background of the panel
         () => {
-            const controlDeck = document.body.getElementsByClassName("control-panel");
-            const space = document.body.getElementsByClassName("space");
-
-            if (controlDeck.length === 0) return hs.wrong("There no element with class='control-panel'");
-            if (space.length === 0) return hs.wrong("There no element with class='space'");
-
-            const controlDeckTop = parseInt(window.getComputedStyle(controlDeck[0]).top);
-            const spaceHeight = space[0].scrollHeight
-
-            if (controlDeckTop < spaceHeight / 3) return  hs.wrong("The control panel element is placed too low");
+            let controlDeck = document.getElementsByClassName("control-panel")
+            if (controlDeck.length === 0) {
+                return hs.wrong("Can't find element with class=\"control-panel\"");
+            }
+            let controlDeckBgImg = window.getComputedStyle(controlDeck[0]).backgroundImage;
+            if (!controlDeckBgImg.toLowerCase().includes('linear-gradient')) return hs.wrong("The element with class='control-panel' should have gradient background.");
 
             return hs.correct();
         },
         //#test6
-        //testing background of the panel
-        () => {
-            let controlDeck = document.getElementsByClassName("control-panel");
-            if (controlDeck.length === 0) {
-                return hs.wrong("Can't find element with class=\"control-panel\"");
-            }
-            let controlDeckBgClr = window.getComputedStyle(controlDeck[0]).backgroundColor;
-            if (!controlDeckBgClr) return hs.wrong("The element with class='control-panel' should have background-color.");
-
-            return hs.correct();
-        },
-        //#test7
         //testing positioning of check-buttons and levers
         /*display: flex;
     flex-direction: row;*/
@@ -154,7 +138,7 @@ async function stageTest() {
 
             return hs.correct();
         },
-        //#test8
+        //#test7
         //testing that levers positioned vertical
         () => {
             let leversDiv = document.getElementsByClassName('levers')[0];
@@ -165,6 +149,58 @@ async function stageTest() {
             })
 
             return hs.correct();
+        },
+        //#test8
+        //testing password field
+        () => {
+            let controlPanelInner = document.getElementsByClassName('control-panel__inner');
+            if (controlPanelInner.length === 0) {
+                return hs.wrong("Can't find element with class=\"control-panel__inner\"");
+            }
+            for(let el of Array.from(controlPanelInner[0].children)){
+                if (el.tagName.toLowerCase() === 'input' && el.type.toLowerCase() === 'password') {
+                    let styles = window.getComputedStyle(el);
+                    if (styles.color && styles.color !== 'rgb(0, 0, 0)' &&
+                        styles.border && styles.border !== '2px inset rgb(0, 0, 0)')
+                        return  hs.correct()
+                    else return hs.wrong("Password field's border and text color should be changed");
+                }
+            }
+
+            return hs.wrong("Can't find password field");
+        },
+        //testing the background color of the "ok" and "launch" buttons
+        () => {
+            let controlPanelInner = document.getElementsByClassName('control-panel__inner')[0];
+            let counter = 0;
+            for(let el of Array.from(controlPanelInner.children)){
+                if (el.tagName.toLowerCase() === 'input' && (el.type.toLowerCase() === 'submit' || el.type.toLowerCase() === 'button')) {
+                    let styles = window.getComputedStyle(el);
+                    if (styles.backgroundColor && styles.backgroundColor !== 'rgb(255, 255, 255)') {
+                        counter++;
+                    }
+
+                }
+            }
+
+            return counter === 2
+                ? hs.correct()
+                : hs.wrong("Can't find 2 input fields with type=button or submit with changed background");
+        },
+        //testing the form of the launch button
+        () => {
+            let controlPanelInner = document.getElementsByClassName('control-panel__inner')[0];
+            for(let el of Array.from(controlPanelInner.children)){
+                if (el.tagName.toLowerCase() === 'input' && (el.type.toLowerCase() === 'submit' || el.type.toLowerCase() === 'button')) {
+                    let styles = window.getComputedStyle(el);
+                    if (styles.backgroundColor && styles.backgroundColor !== 'rgb(0, 0, 0)' &&
+                        styles.borderRadius && styles.borderRadius !== '0px') {
+                        return hs.correct();
+                    }
+                }
+            }
+
+            return hs.wrong("Can't find the input with type=button or submit with specified border-radius");
         }
     )
 
