@@ -79,3 +79,5 @@ fabric.properties
 *.iml
 out
 gen
+/node_modules
+/.DS_Store

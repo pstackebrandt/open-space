@@ -3,7 +3,7 @@ hyperskill_project:
   ide_files: https://stepik.org/media/attachments/lesson/452681/additional_files.json
   is_template_based: false
   use_ide: true
-update_date: Fri, 12 Nov 2021 15:49:01 UTC
+update_date: Sun, 14 Nov 2021 16:42:45 UTC
 stages:
 - id: 771
   step: 11733
@@ -145,10 +145,6 @@ topics:
     theory_id: 10857
   - title: The "addEventListener" method
     theory_id: 8723
-  - title: Introduction to arrays
-    theory_id: 16141
-  - title: Array creation
-    theory_id: 16356
   - title: Introduction to Promises
     theory_id: 9980
   - title: '"then", "catch" and "finally" methods'
@@ -157,6 +153,10 @@ topics:
     theory_id: 10865
   - title: Arrow functions
     theory_id: 8455
+  - title: Introduction to arrays
+    theory_id: 16141
+  - title: Array creation
+    theory_id: 16356
   - title: JSON
     theory_id: 6854
   - title: Introduction to Objects

@@ -293,15 +293,6 @@ files:
         }
     );
   learner_created: false
-- name: src/image/mars.png
-  visible: true
-  learner_created: true
-- name: src/image/rocket.png
-  visible: true
-  learner_created: true
-- name: src/image/space.png
-  visible: true
-  learner_created: true
 - name: src/script/script.js
   visible: true
   learner_created: true
@@ -313,4 +304,4 @@ feedback:
 
     There are some mismatches with suggested structure or elements naming in control-panel section"
   time: Sat, 13 Nov 2021 14:21:06 UTC
-record: -1
+record: 5
