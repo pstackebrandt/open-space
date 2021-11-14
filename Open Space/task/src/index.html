@@ -19,26 +19,27 @@
 
     <div class="control-panel">
         <div class="control-panel__inner">
-            <input id="password" type="password" placeholder="Password">
-            <input id="passwordEntered" type="button" value="OK" onClick="checkControlPanelPosition()">
+            <input id="password" class="authorizer" type="password" placeholder="Password">
+            <input id="passwordEntered" class="authorizer" type="button" value="OK" onClick="authorizeControlAccess()">
 
             <div class="check-buttons">
-                <input type="checkbox" >
-                <input type="checkbox">
-                <input type="checkbox">
-                <input type="checkbox">
-                <input type="checkbox">
-                <input type="checkbox">
+                <input class="secured" type="checkbox" disabled>
+                <input class="secured" type="checkbox" disabled>
+                <input class="secured" type="checkbox" disabled>
+                <input class="secured" type="checkbox" disabled>
+                <input class="secured" type="checkbox" disabled>
+                <input class="secured" type="checkbox" disabled>
             </div>
 
-            <div class="levers" >
-                <input type="range" class="vertical">
-                <input type="range" class="vertical">
-                <input type="range" class="vertical">
-                <input type="range" class="vertical">
-                <input type="range" class="vertical">
+            <div class="levers">
+                <input class="secured" type="range" class="vertical" disabled>
+                <input class="secured" type="range" class="vertical" disabled>
+                <input class="secured" type="range" class="vertical" disabled>
+                <input class="secured" type="range" class="vertical" disabled>
+                <input class="secured" type="range" class="vertical" disabled>
             </div>
-            <input type="button" id="launch" value="Launch">
+            <input type="button" id="launch" value="Launch" class="secured" disabled
+                   onClick="checkControlPanelPosition()">
         </div>
     </div>
 
