@@ -85,24 +85,35 @@ function checkReadyForLaunch() {
     const requiredElements = getAllControlElementsRequiredForLaunch();
     console.log("count of required elements: " + requiredElements.length);
 
+    let isReady = true;
+
     for (let i in requiredElements) {
         const element = requiredElements[i];
         if (element.type === "checkbox") {
             console.log("checkbox found");
             if (element.checked !== true) {
                 console.info("a checkbox is not checked, launch is forbidden")
-                return false;
+                isReady = false;
+                break;
             }
         } else if (element.type === "range") {
             console.log("range found");
-            if (element.value !== "100" ) {
+            if (element.value !== "100") {
                 console.info("a range is not at maximum, launch is forbidden")
-                return false;
+                isReady = false;
+                break;
             }
         }
     }
 
-    return true;
+    const launchButton = document.getElementById("launch");
+    if (isReady === true) {
+        launchButton.disabled = false;
+    } else {
+        launchButton.disabled = true;
+    }
+
+    return isReady;
 }
 
 function getAllControlElementsRequiredForLaunch() {

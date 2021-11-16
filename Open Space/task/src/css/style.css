@@ -61,7 +61,7 @@ h1 {
     width: 9vw;
 }
 
-.control-panel{
+.control-panel {
     position: absolute;
     left: 50vw;
     min-height: 15vw;
@@ -76,7 +76,7 @@ h1 {
     justify-content: center;
 }
 
-.control-panel__inner{
+.control-panel__inner {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -89,20 +89,20 @@ h1 {
 }
 
 
-.check-buttons{
+.check-buttons {
     display: flex;
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
 }
 
-.check-buttons input[type="checkbox"]{
+.check-buttons input[type="checkbox"] {
     margin: 1vw 1vw;
     width: 1.2vw;
     height: 1.2vw;
 }
 
-.levers{
+.levers {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -110,14 +110,22 @@ h1 {
     margin: 1vw 0;
 }
 
-.levers input[type="range"]{
+.levers input[type="range"] {
     margin: 0 -1vw;
     transform: rotate(-90deg);
     height: 7vw;
     width: 7vw;
 }
 
-#launch, #passwordEntered, #password{
+#launch[disabled] {
+    background-color: red;
+}
+
+#launch:not([disabled]) {
+    background-color:darkgreen ;
+}
+
+#launch, #passwordEntered, #password {
     margin: 1vw;
 }
 
@@ -144,7 +152,7 @@ h1 {
 }
 
 #launch {
-    background-color: red;
+    /*background-color: red;*/
     border: 2px solid yellow;
     border-radius: 70%;
     padding: 1.2vw;
