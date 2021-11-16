@@ -1,3 +1,5 @@
+const isDebug = true;
+
 function checkControlPanelPosition() {
     const controlDeck = document.body.getElementsByClassName("control-panel");
     const space = document.body.getElementsByClassName("space");
@@ -29,6 +31,12 @@ function getAuthorizationState() {
         controlAuthorised = true;
         console.log("control is authorised");
     }
+
+    if (isDebug) {
+        controlAuthorised = true;
+        console.info("authorized control access for debug")
+    }
+
     return controlAuthorised;
 }
 
@@ -52,6 +60,68 @@ function switchSecuredElements(controlAuthorised) {
         } else {
             securedItems[i].disabled = true;
             console.log(`disable element type ${securedItems[i].type} disabled? ${securedItems[i].enabled}`);
+        }
+    }
+}
+
+function launch() {
+    const readyForLaunch = checkReadyForLaunch();
+    if (readyForLaunch) {
+        console.log("tries to launch rocket");
+        const isReady = checkReadyForLaunch()
+        if (isReady) {
+            console.log("Launches rocket");
+        }
+    } else {
+        alert("Rocket isn't ready for launch. Activate all switches and set range controls to maximum.");
+    }
+}
+
+/* Checks whether rocket is ready to launch.
+* return bool: true: yes, false: no */
+function checkReadyForLaunch() {
+    // check checkboxes, range elements
+    // get all checkboxes
+    const requiredElements = getAllControlElementsRequiredForLaunch();
+    console.log("count of required elements: " + requiredElements.length);
+
+    for (let i in requiredElements) {
+        const element = requiredElements[i];
+        if (element.type === "checkbox") {
+            console.log("checkbox found");
+            if (element.checked !== true) {
+                console.info("a checkbox is not checked, launch is forbidden")
+                return false;
+            }
+        } else if (element.type === "range") {
+            console.log("range found");
+            if (element.value !== "100" ) {
+                console.info("a range is not at maximum, launch is forbidden")
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
+function getAllControlElementsRequiredForLaunch() {
+    return document.getElementsByClassName("required-for-launch");
+}
+
+/* Check all checkboxes and maximize all range elements
+   of control panel. This is a helper for debugging. */
+function setAllControlsToMaxValue() {
+    console.log("checkAndMaxControls()");
+    const requiredElements = getAllControlElementsRequiredForLaunch();
+    console.log("count of elements to check or max: " + requiredElements.length);
+
+    for (let i in requiredElements) {
+        const element = requiredElements[i];
+        if (element.type === "checkbox") {
+            element.checked = true;
+        } else if (element.type === "range") {
+            element.value = "100";// element.max.toString();
         }
     }
 }

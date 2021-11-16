@@ -23,23 +23,24 @@
             <input id="passwordEntered" class="authorizer" type="button" value="OK" onClick="authorizeControlAccess()">
 
             <div class="check-buttons">
-                <input class="secured" type="checkbox" disabled>
-                <input class="secured" type="checkbox" disabled>
-                <input class="secured" type="checkbox" disabled>
-                <input class="secured" type="checkbox" disabled>
-                <input class="secured" type="checkbox" disabled>
-                <input class="secured" type="checkbox" disabled>
+                <input class="secured required-for-launch" type="checkbox" disabled onchange="checkReadyForLaunch()">
+                <input class="secured required-for-launch" type="checkbox" disabled>
+                <input class="secured required-for-launch" type="checkbox" disabled>
+                <input class="secured required-for-launch" type="checkbox" disabled>
+                <input class="secured required-for-launch" type="checkbox" disabled>
+                <input class="secured required-for-launch" type="checkbox" disabled>
             </div>
 
             <div class="levers">
-                <input class="secured" type="range" class="vertical" disabled>
-                <input class="secured" type="range" class="vertical" disabled>
-                <input class="secured" type="range" class="vertical" disabled>
-                <input class="secured" type="range" class="vertical" disabled>
-                <input class="secured" type="range" class="vertical" disabled>
+                <input class="secured required-for-launch" type="range" class="vertical" disabled>
+                <input class="secured required-for-launch" type="range" class="vertical" disabled>
+                <input class="secured required-for-launch" type="range" class="vertical" disabled>
+                <input class="secured required-for-launch" type="range" class="vertical" disabled>
+                <input class="secured required-for-launch" type="range" class="vertical" disabled>
             </div>
             <input type="button" id="launch" value="Launch" class="secured" disabled
-                   onClick="checkControlPanelPosition()">
+                   onClick="launch()">
+            <!-- checkControlPanelPosition() -->
         </div>
     </div>
 
