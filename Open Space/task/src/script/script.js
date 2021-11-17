@@ -88,7 +88,7 @@ function checkReadyForLaunch() {
     const requiredElements = getAllControlElementsRequiredForLaunch();
     console.log("count of required elements: " + requiredElements.length);
 
-    let isReady = true;
+    let isReadyForLaunch = true;
 
     for (let i in requiredElements) {
         const element = requiredElements[i];
@@ -96,27 +96,23 @@ function checkReadyForLaunch() {
             console.log("checkbox found");
             if (element.checked !== true) {
                 console.info("a checkbox is not checked, launch is forbidden")
-                isReady = false;
+                isReadyForLaunch = false;
                 break;
             }
         } else if (element.type === "range") {
             console.log("range found");
             if (element.value !== "100") {
                 console.info("a range is not at maximum, launch is forbidden")
-                isReady = false;
+                isReadyForLaunch = false;
                 break;
             }
         }
     }
 
     const launchButton = document.getElementById("launch");
-    if (isReady === true) {
-        launchButton.disabled = false;
-    } else {
-        launchButton.disabled = true;
-    }
+    launchButton.disabled = isReadyForLaunch === false;
 
-    return isReady;
+    return isReadyForLaunch;
 }
 
 function getAllControlElementsRequiredForLaunch() {
@@ -126,7 +122,7 @@ function getAllControlElementsRequiredForLaunch() {
 
 /* Code for debugging */
 
-/* Show control panel position. Required for manual debugging. Rquirede because of
+/* Show control panel position. Required for manual debugging. Required because of
 * over sized unit test by jetbrains academy. */
 function checkControlPanelPosition() {
     const controlDeck = document.body.getElementsByClassName("control-panel");
