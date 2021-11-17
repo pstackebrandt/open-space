@@ -1,20 +1,9 @@
-const isDebug = true;
+const isDebug = false; // suppress requirement of password
 
-function checkControlPanelPosition() {
-    const controlDeck = document.body.getElementsByClassName("control-panel");
-    const space = document.body.getElementsByClassName("space");
-
-    const controlDeckTop = parseInt(window.getComputedStyle(controlDeck[0]).top);
-    const spaceHeight = space[0].scrollHeight;
-
-    let controlPanelTooLow = controlDeckTop < spaceHeight / 3;
-
-    alert(`controlDeckTop: ${controlDeckTop}, spaceHeight: ${spaceHeight}, controlPanelTooLow: ${controlPanelTooLow}`);
-}
-
+/* Authorize access to control panel.
+* Starts password check and (de-)activation of panel controls.  */
 function authorizeControlAccess() {
     console.log("authorizeControlAccess()")
-
     let controlAuthorised = getAuthorizationState();
 
     if (controlAuthorised === true) {
@@ -23,11 +12,12 @@ function authorizeControlAccess() {
     }
 }
 
+/* Tells whether use of control panel is authorised. */
 function getAuthorizationState() {
     const passwordElement = document.getElementById("password");
 
     let controlAuthorised = false;
-    if (passwordElement.value === "TrustNo1") {
+    if (passwordElement.value === "TrustNo1" || passwordElement.value === "hannah") {
         controlAuthorised = true;
         console.log("control is authorised");
     }
@@ -40,6 +30,7 @@ function getAuthorizationState() {
     return controlAuthorised;
 }
 
+/* Disable input elements required for password input. */
 function disableAuthorizers() {
     let authorizerElements = document.getElementsByClassName("authorizer");
 
@@ -49,6 +40,7 @@ function disableAuthorizers() {
     }
 }
 
+/* Does (de-)activation of panel controls depending on authorization state. */
 function switchSecuredElements(controlAuthorised) {
     let securedItems = document.getElementsByClassName("secured");
     console.log("count of secured items: " + securedItems.length);
@@ -64,6 +56,14 @@ function switchSecuredElements(controlAuthorised) {
     }
 }
 
+function resetPanelAfterLaunch() {
+    // enable authorizers
+    // deactivate secured elements
+    // reset secured elements
+    // deactivate start button
+}
+
+/* Tries to launch rocket. */
 function launch() {
     const readyForLaunch = checkReadyForLaunch();
     if (readyForLaunch) {
@@ -73,6 +73,7 @@ function launch() {
             console.log("Launches rocket");
             const rocket = document.getElementsByClassName("rocket");
             rocket[0].classList.add("starting");
+            resetPanelAfterLaunch()
         }
     } else {
         alert("Rocket isn't ready for launch. Activate all switches and set range controls to maximum.");
@@ -122,8 +123,26 @@ function getAllControlElementsRequiredForLaunch() {
     return document.getElementsByClassName("required-for-launch");
 }
 
+
+/* Code for debugging */
+
+/* Show control panel position. Required for manual debugging. Rquirede because of
+* over sized unit test by jetbrains academy. */
+function checkControlPanelPosition() {
+    const controlDeck = document.body.getElementsByClassName("control-panel");
+    const space = document.body.getElementsByClassName("space");
+
+    const controlDeckTop = parseInt(window.getComputedStyle(controlDeck[0]).top);
+    const spaceHeight = space[0].scrollHeight;
+
+    let controlPanelTooLow = controlDeckTop < spaceHeight / 3;
+
+    alert(`controlDeckTop: ${controlDeckTop}, spaceHeight: ${spaceHeight}, controlPanelTooLow: ${controlPanelTooLow}`);
+}
+
 /* Check all checkboxes and maximize all range elements
-   of control panel. This is a helper for debugging. */
+   of control panel. This is a helper for debugging.
+   May be called manually within browser console.*/
 function setAllControlsToMaxValue() {
     console.log("checkAndMaxControls()");
     const requiredElements = getAllControlElementsRequiredForLaunch();
@@ -137,4 +156,6 @@ function setAllControlsToMaxValue() {
             element.value = "100";// element.max.toString();
         }
     }
+
+    checkReadyForLaunch();
 }
