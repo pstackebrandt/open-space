@@ -71,6 +71,8 @@ function launch() {
         const isReady = checkReadyForLaunch()
         if (isReady) {
             console.log("Launches rocket");
+            const rocket = document.getElementsByClassName("rocket");
+            rocket[0].classList.add("starting");
         }
     } else {
         alert("Rocket isn't ready for launch. Activate all switches and set range controls to maximum.");
