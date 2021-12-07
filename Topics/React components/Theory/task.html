@@ -1,0 +1,167 @@
+<h2>React components</h2>
+<html>
+ <head></head>
+ <body>
+  <p>In the early days of web development, you couldn't create a website by combining <strong>HTML</strong> and <strong>JavaScript</strong> in the same file. Your HTML code would have to be written separately from your JavaScript code. Thanks to the <strong>React </strong>framework, this is no longer the case. Not only can both languages now be used in the same file, but JavaScript can also be used inside HTML (and even <strong>CSS</strong>), making the programmer's life simpler.</p> 
+  <p>In this topic, you will learn what React <strong>components</strong> are and how you can use them to combine HTML and Javascript.</p> 
+  <h5>What are components?</h5> 
+  <p>Components are simple, independent, dynamic, reusable pieces of code. As with JavaScript functions, their purpose is to return something. However, React components only return HTML elements.</p> 
+  <p>There are two React component types: <strong>Functional components</strong> and <strong>Class components</strong>. But before we discuss the differences between them, let's take a more detailed look at what React components are and how we can create them.</p> 
+  <p>We will mainly focus on Functional components in this topic as they have a simpler syntax.</p> 
+  <pre><code class="language-javascript">import React from 'react'
+
+function Card() {
+  return (
+    &lt;div className="card"&gt;
+      &lt;div className="input-container"&gt;
+        &lt;input type="text" placeholder="Email"/&gt;
+        &lt;input type="text" placeholder="Password"/&gt;
+      &lt;/div&gt;
+      &lt;div className="button-container"&gt;
+        &lt;button&gt;Login&lt;/button&gt;
+        &lt;button&gt;Signup&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  )
+}
+
+export default Card;</code></pre> 
+  <p>There's no need to panic if the above code snippet seems a bit strange — it's simply a JavaScript function that returns HTML elements.</p> 
+  <p>Let's see how this straightforward component will look on a web page. To do this, you can run the command <code class="language-javascript">npm start</code> in the terminal, and the application will start.</p> 
+  <p><img alt="" height="240" name="html.gif" src="https://ucarecdn.com/3ca8dbf7-f88c-492c-acd4-cf59e600d8bb/" width="352"></p> 
+  <p>As expected, it's a simple HTML page structure with the elements that are defined in the code. Notice that the <code class="language-javascript">div</code> elements have the same classes as those specified in the <code class="language-javascript">Card</code> function.</p> 
+  <h5>Creating components</h5> 
+  <p>To create a component, start by running the command <code class="language-javascript">npx create-react-app my-app</code> on the terminal. After running the command, open the <em>App.js</em> file that's inside the <em>src</em> folder. Then delete all the code inside this file so the component can be created from scratch.</p> 
+  <p>Let's start by importing the React library. We need to do this because browsers don't understand <strong>JSX</strong> code. The import tells the compiler that our file contains JSX, meaning that it can be transformed into regular JavaScript.</p> 
+  <pre><code class="language-javascript">import React from 'react'</code></pre> 
+  <p></p>
+  <div class="alert alert-primary">
+   As of React version 17.0, this import is only needed if you want to import other functions from the library.
+  </div>
+  <p></p> 
+  <p>Now we'll define a function named <code class="language-javascript">App</code>:</p> 
+  <pre><code class="language-javascript">import React from 'react'
+
+function App() {
+
+}</code></pre> 
+  <p>At this point, <code class="language-javascript">App()</code> is just an empty JavaScript function. To make it a React component, we need it to return at least one HTML element, as shown below:</p> 
+  <pre><code class="language-javascript">import React from 'react'
+
+function App() {
+  return &lt;h1&gt;Hello, Hyperskill&lt;/h1&gt;
+}</code></pre> 
+  <p>So, can we now say that our <code class="language-javascript">App</code> function is a React component? The answer is that it depends! How so?</p> 
+  <p>Well, if we tried to run the function as plain JavaScript, the following <code class="language-javascript">SyntaxError</code> would be thrown:</p> 
+  <pre><code class="language-javascript">// SyntaxError: Unexpected token '&lt;'</code></pre> 
+  <p>The reason for this is that JavaScript can't interpret HTML code on its own, which is why we need a framework like React! React uses a compiler named <strong>Babel</strong> under the hood. Babel transforms all<strong> </strong>JSX code into JavaScript so that browsers can interpret it. This means that we can say our <code class="language-javascript">App</code> function is a React component, providing we run it within the React environment.</p> 
+  <p>Another way to create Functional components is by using arrow functions:</p> 
+  <pre><code class="language-javascript">import React from 'react'
+
+const App = () =&gt; {
+  return &lt;h1&gt;Hello, Hyperskill&lt;/h1&gt;
+}</code></pre> 
+  <p>If your function only contains HTML code, you can omit the <code class="language-javascript">return</code> keyword, and replace the curly brackets <code class="language-javascript">{ }</code> with parentheses <code class="language-javascript">( )</code>:</p> 
+  <pre><code class="language-javascript">import React from 'react'
+
+const App = () =&gt; (
+  &lt;h1&gt;Hello, Hyperskill&lt;/h1&gt;
+)</code></pre> 
+  <p>However, it's important to remember that the above syntax only works with arrow functions.</p> 
+  <h5>More elements</h5> 
+  <p>If you want your function to return more than one HTML element, you have to keep a couple of things in mind.</p> 
+  <p>Firstly, if you're going to add more HTML elements to your function, you must always enclose them within a single element. </p> 
+  <pre><code class="language-javascript">import React from 'react'
+
+function App() {
+  return (
+    &lt;p&gt;Hello&lt;/p&gt;
+    &lt;p&gt;Hyperskill&lt;/p&gt;
+  )
+}</code></pre> 
+  <p>If you try to run the above code, the compilation will fail with the error shown below:</p> 
+  <pre><code class="language-javascript">// SyntaxError: Adjacent JSX elements must be wrapped in an enclosing tag</code></pre> 
+  <p>The solution is quite simple: you need to create one element (such as a <code class="language-javascript">&lt;div&gt;</code>) and put the two <code class="language-javascript">&lt;p&gt;</code> elements inside it:</p> 
+  <pre><code class="language-javascript">import React from 'react'
+
+function App() {
+  return (
+    &lt;div&gt;
+      &lt;p&gt;Hello&lt;/p&gt;
+      &lt;p&gt;Hyperskill&lt;/p&gt;
+    &lt;/div&gt;
+  )
+}</code></pre> 
+  <p>Secondly, when you have more than one element, they must also be enclosed in parentheses, as you can see in the above example.</p> 
+  <h5>Using JavaScript variables</h5> 
+  <p>In addition to returning HTML elements, React components can also be used to combine JavaScript, HTML, and even CSS. For now, we'll focus on JavaScript and HTML, but CSS will be covered in a later topic.</p> 
+  <p>Imagine you've got a list of celestial bodies and want to classify them as either stars or planets. It would be a tedious and repetitive task if you had to write down the type of each one in your list.</p> 
+  <p>Fortunately, you can declare variables and use them within the HTML code.</p> 
+  <p>First, you would declare your variables. For example, <code class="language-javascript">const star = 'Star';</code>. Don't forget that your variables must be declared before the <code class="language-javascript">return</code> statement. It's possible to declare them inside or outside the scope of the function. But as you're only going to be using them within the function, it makes more sense to place them inside.</p> 
+  <p>Next, to use the variables inside the HTML code, you need to enclose them in curly brackets, like this: <code class="language-javascript">&lt;p&gt;Type: {star}&lt;/p&gt;</code>. </p> 
+  <p>The following example should make this clearer:</p> 
+  <pre><code class="language-javascript">import React from 'react'
+
+function App() {
+  const star = 'Star';
+  const planet = 'Planet';
+
+  return (
+    &lt;div&gt;
+      &lt;h2&gt;Celestial Bodies&lt;/h2&gt;
+
+      &lt;p&gt;Name: Polaris, Type: {star}&lt;/p&gt;
+      &lt;p&gt;Name: Saturn, Type: {planet}&lt;/p&gt;
+      &lt;p&gt;Name: Sirius, Type: {star}&lt;/p&gt;
+      &lt;p&gt;Name: Jupiter, Type: {planet}&lt;/p&gt;
+      &lt;p&gt;Name: Betelgeuse, Type: {star}&lt;/p&gt;
+      &lt;p&gt;Name: Uranus, Type: {planet}&lt;/p&gt;
+    &lt;/div&gt;
+  )
+}</code></pre> 
+  <p>Your variables will be rendered as an ordinary string, and the result that you'll see on the web page is shown below:</p> 
+  <p><img alt="" height="300" name="Captura de tela 24-08-2021 18.22.33.png" src="https://ucarecdn.com/432c045c-336d-44b7-8794-e329f66b80bb/" width="320"></p> 
+  <h5>Exporting components</h5> 
+  <p>As stated at the beginning of this topic, components are reusable pieces of code. To take advantage of this, you can export them for use in other areas of your application. </p> 
+  <p>To perform an export, you need to use the <code class="language-javascript">export</code> keyword and the name of your function. And if your code only includes one component, you must also use the <code class="language-javascript">default</code> keyword, as you can see in this example:</p> 
+  <pre><code class="language-javascript">import React from 'react'
+
+function App() {
+  return &lt;h1&gt;Hello, Hyperskill&lt;/h1&gt;
+}
+
+export default App;</code></pre> 
+  <p>Now open the file <em>index.js</em> inside the <em>src</em> folder. In this file, you can import your <code class="language-javascript">App</code> function and use it inside <code class="language-javascript">ReactDOM.render</code>:</p> 
+  <pre><code class="language-javascript">import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+
+ReactDOM.render(
+  &lt;App /&gt;,
+  document.getElementById('root')
+);</code></pre> 
+  <p>Notice that the <code class="language-javascript">App</code> function is used as a self-closing HTML tag. This enables the <code class="language-javascript">render()</code> function to interpret it as a React component. You can also use multiple instances of this function inside <code class="language-javascript">render()</code> by enclosing them within a single element:</p> 
+  <pre><code class="language-javascript">ReactDOM.render(
+  &lt;div&gt;
+    &lt;App /&gt;
+    &lt;App /&gt;
+    &lt;App /&gt;
+  &lt;/div&gt;,
+  document.getElementById('root')
+);</code></pre> 
+  <p>If you run the command <code class="language-javascript">npm start</code> now, you should see three <code class="language-javascript">h1</code> elements on your web page.</p> 
+  <h5>Class vs. Functional components</h5> 
+  <p>The main difference between Class and Functional components is their syntax. While Functional components are simply JavaScript functions, a Class component is a<strong> </strong>JavaScript class that extends <code class="language-javascript">React.Component</code> and has a <code class="language-javascript">render()</code> method. Other variations between the components include how we pass <code class="language-javascript">props</code> to them and how states are handled. However, there's no need to worry about these differences now as they'll be covered in a future topic. </p> 
+  <p>For the time being, all you really need to know is that Functional components were introduced more recently. And that they have become popular because they are simpler to work with. To illustrate this point, let's make a basic Class component that returns an <code class="language-javascript">h1</code> element:</p> 
+  <pre><code class="language-javascript">import React from 'react'
+
+class App extends React.component {
+  render() {
+    return &lt;h1&gt;Hello, Hyperskill&lt;/h1&gt;
+  }
+}</code></pre> 
+  <h5>Conclusion</h5> 
+  <p>In this topic, you have learned what React components are and how you can use them. You now know there are two ways to create React components — using functions or classes — and the main differences between them.</p> 
+  <p>Functional components are simple JavaScript functions that return HTML<strong> </strong>elements. They enable you to combine<strong> </strong>JavaScript with HTML, making your code more dynamic. They can also be reused in other parts of your application, so you don't have to write the same code twice. Now how about putting this knowledge into practice with some exercises?</p>
+ </body>
+</html>
